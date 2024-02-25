@@ -25,3 +25,4 @@ ChrootDirectory %h
 HostKeyAlgorithms +ssh-dss,ssh-rsa
 KexAlgorithms +diffie-hellman-group14-sha1
 Ciphers +aes128-cbc
+PubkeyAcceptedAlgorithms +ssh-rsa
