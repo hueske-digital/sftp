@@ -6,9 +6,19 @@ services:
     restart: unless-stopped
     volumes:
       - sftp_keys:/etc/ssh
+      - app_data:/home/${SFTP_USERNAME}/data
+      - $PWD/publickeys:/home/${SFTP_USERNAME}/.ssh/keys:ro
     ports:
       - "2223:22"
+    networks:
+      default:
+    # Empty password = only allow publickeys
+    command: ${SFTP_USERNAME}:${SFTP_PASSWORD}:1000
     ulimits:
       nofile:
         soft: 65536
         hard: 65536
+
+volumes:
+  sftp_keys:
+  app_data:

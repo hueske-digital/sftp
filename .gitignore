@@ -1,2 +1,4 @@
 .env
 .idea
+publickeys/*
+!publickeys/README.md
