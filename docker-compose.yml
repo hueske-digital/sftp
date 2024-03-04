@@ -4,6 +4,8 @@ services:
   sftp:
     image: ghcr.io/hueske-digital/sftp:latest
     restart: unless-stopped
+    environment:
+      - SFTP_USERNAME
     volumes:
       - sftp_keys:/etc/ssh
       - app_data:/home/${SFTP_USERNAME}/data
