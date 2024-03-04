@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "SFTP_USERNAME: ${SFTP_USERNAME}"
-local watch_dir="/home/${SFTP_USERNAME}/.ssh/keys"
-echo "Attempting to monitor directory: $watch_dir"
-
 ORIGINAL_ENTRYPOINT="/entrypoint"
 
 monitor_ssh_keys_and_kill_processes() {
