@@ -36,7 +36,8 @@ jobs:
           push: true
           context: ./build
           tags: ghcr.io/hueske-digital/sftp:latest
-          platforms: linux/amd64,linux/arm64
+          # add linux/arm64 when base-image supports arm64
+          platforms: linux/amd64
 
       - name: Do not automatically disable workflow execution
         uses: gautamkrishnar/keepalive-workflow@v1
