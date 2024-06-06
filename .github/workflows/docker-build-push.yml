@@ -1,12 +1,10 @@
 name: Build and Push Docker image
 
 on:
-  push:
-    branches:
-      - main
-
-  schedule:
-    - cron: '0 0 * * 1'
+  workflow_run:
+    workflows: ["Build and Push Base Docker image"]
+    types:
+      - completed
 
 jobs:
   build:
@@ -36,8 +34,7 @@ jobs:
           push: true
           context: ./build
           tags: ghcr.io/hueske-digital/sftp:latest
-          # add linux/arm64 when base-image supports arm64
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
 
       - name: Do not automatically disable workflow execution
         uses: gautamkrishnar/keepalive-workflow@v1

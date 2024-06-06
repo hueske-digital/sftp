@@ -1,4 +1,4 @@
-name: Build and Push Docker image
+name: Build and Push Base Docker image
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
   schedule:
-    - cron: '0 18 * * FRI'
+    - cron: '0 0 * * 0'
 
 jobs:
   build:
@@ -40,7 +40,6 @@ jobs:
           file: ./sftp/Dockerfile-alpine
           context: ./sftp
           tags: ghcr.io/hueske-digital/sftp:base
-          # add linux/arm64 when base-image supports arm64
           platforms: linux/amd64,linux/arm64
 
       - name: Do not automatically disable workflow execution
