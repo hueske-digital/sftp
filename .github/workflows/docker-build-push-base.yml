@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          file: Dockerfile-alpine
+          file: ./sftp/Dockerfile-alpine
           context: ./sftp
           tags: ghcr.io/hueske-digital/sftp:base
           # add linux/arm64 when base-image supports arm64
