@@ -1,0 +1,47 @@
+name: Build and Push Docker image
+
+on:
+  push:
+    branches:
+      - main
+
+  schedule:
+    - cron: '0 18 * * FRI'
+
+jobs:
+  build:
+    permissions:
+      contents: write
+      packages: write
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Clone the sftp repository
+        run: git clone https://github.com/atmoz/sftp.git
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitLab Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          file: Dockerfile-alpine
+          context: ./sftp
+          tags: ghcr.io/hueske-digital/sftp:base
+          # add linux/arm64 when base-image supports arm64
+          platforms: linux/amd64,linux/arm64
+
+      - name: Do not automatically disable workflow execution
+        uses: gautamkrishnar/keepalive-workflow@v1
