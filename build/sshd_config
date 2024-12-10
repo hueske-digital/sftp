@@ -23,6 +23,4 @@ ChrootDirectory %h
 
 # For making the brother ADS-w700W printer SFTPable
 HostKeyAlgorithms +ssh-rsa
-KexAlgorithms +diffie-hellman-group14-sha1
-Ciphers +aes128-cbc
 PubkeyAcceptedAlgorithms +ssh-rsa
