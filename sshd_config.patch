@@ -1,0 +1,18 @@
+diff --git a/files/sshd_config b/files/sshd_config
+index 1308c8b..3906e95 100644
+--- a/files/sshd_config
++++ b/files/sshd_config
+@@ -15,8 +15,12 @@ AllowTcpForwarding no
+ 
+ # Force sftp and chroot jail
+ Subsystem sftp internal-sftp
+-ForceCommand internal-sftp
++ForceCommand internal-sftp -d /stash
+ ChrootDirectory %h
+ 
+ # Enable this for more logs
+ #LogLevel VERBOSE
++
++# For making the brother ADS-w700W printer SFTPable
++HostKeyAlgorithms +ssh-rsa
++PubkeyAcceptedAlgorithms +ssh-rsa
