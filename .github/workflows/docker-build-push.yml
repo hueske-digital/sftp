@@ -41,7 +41,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          file: ./sftp/Dockerfile
+          file: ./sftp/Dockerfile-alpine
           context: ./sftp
           tags: ghcr.io/hueske-digital/sftp:latest
           platforms: linux/amd64,linux/arm64
